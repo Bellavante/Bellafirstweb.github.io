@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Plank Pose Camera</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: #f5f5f5;
+      padding: 20px;
+    }
+    video {
+      border: 3px solid #333;
+      border-radius: 12px;
+      width: 640px;
+      height: 480px;
+    }
+    h1 {
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <h1>Plank Pose Camera Preview</h1>
+  <video id="video" autoplay playsinline></video>
+
+  <script>
+    // 取得攝影機畫面
+    async function startCamera() {
+      try {
+        const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+        const videoElement = document.getElementById('video');
+        videoElement.srcObject = stream;
+      } catch (err) {
+        console.error('無法開啟攝影機:', err);
+        alert('請允許使用攝影機才能使用此功能');
+      }
+    }
+
+    startCamera();
+  </script>
+</body>
+</html>
